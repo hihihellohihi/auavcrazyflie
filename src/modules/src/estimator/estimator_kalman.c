@@ -210,7 +210,7 @@ static void kalmanTask(void* parameters) {
   systemWaitStart();
 
   uint32_t nowMs = T2M(xTaskGetTickCount());
-  uint32_t nextPredictionMs = nowMs;
+  // uint32_t nextPredictionMs = nowMs;
 
   rateSupervisorInit(&rateSupervisorContext, nowMs, ONE_SECOND, PREDICT_RATE - 1, PREDICT_RATE + 1, 1);
 
@@ -222,7 +222,7 @@ static void kalmanTask(void* parameters) {
       estimatorKalmanInit();
       resetEstimation = false;
     }
-
+    // might have to get rid of the supervisor, change this if needed
     bool quadIsFlying = supervisorIsFlying();
 
   #ifdef KALMAN_DECOUPLE_XY
@@ -230,19 +230,19 @@ static void kalmanTask(void* parameters) {
   #endif
 
     // Run the system dynamics to predict the state forward.
-    if (nowMs >= nextPredictionMs) {
-      axis3fSubSamplerFinalize(&accSubSampler);
-      axis3fSubSamplerFinalize(&gyroSubSampler);
+    // if (nowMs >= nextPredictionMs) {
+    //   axis3fSubSamplerFinalize(&accSubSampler);
+    //   axis3fSubSamplerFinalize(&gyroSubSampler);
 
-      kalmanCorePredict(&coreData, &accSubSampler.subSample, &gyroSubSampler.subSample, nowMs, quadIsFlying);
-      nextPredictionMs = nowMs + PREDICTION_UPDATE_INTERVAL_MS;
+    //   kalmanCorePredict(&coreData, &accSubSampler.subSample, &gyroSubSampler.subSample, nowMs, quadIsFlying);
+    //   nextPredictionMs = nowMs + PREDICTION_UPDATE_INTERVAL_MS;
 
-      STATS_CNT_RATE_EVENT(&predictionCounter);
+    //   STATS_CNT_RATE_EVENT(&predictionCounter);
 
-      if (!rateSupervisorValidate(&rateSupervisorContext, nowMs)) {
-        DEBUG_PRINT("WARNING: Kalman prediction rate off (%lu)\n", rateSupervisorLatestCount(&rateSupervisorContext));
-      }
-    }
+    //   if (!rateSupervisorValidate(&rateSupervisorContext, nowMs)) {
+    //     DEBUG_PRINT("WARNING: Kalman prediction rate off (%lu)\n", rateSupervisorLatestCount(&rateSupervisorContext));
+    //   }
+    // }
 
     // Add process noise every loop, rather than every prediction
     kalmanCoreAddProcessNoise(&coreData, &coreParams, nowMs);

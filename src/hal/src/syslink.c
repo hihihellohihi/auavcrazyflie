@@ -60,7 +60,7 @@ static void debugSyslinkReceive(SyslinkPacket *slp);
 
 static xSemaphoreHandle syslinkAccess;
 
-STATIC_MEM_TASK_ALLOC_STACK_NO_DMA_CCM_SAFE(syslinkTask, SYSLINK_TASK_STACKSIZE);
+// STATIC_MEM_TASK_ALLOC_STACK_NO_DMA_CCM_SAFE(syslinkTask, SYSLINK_TASK_STACKSIZE);
 
 /* Syslink task, handles communication between nrf and stm and dispatch messages
  */
@@ -115,7 +115,7 @@ void syslinkInit()
 
   vSemaphoreCreateBinary(syslinkAccess);
 
-  STATIC_MEM_TASK_CREATE(syslinkTask, syslinkTask, SYSLINK_TASK_NAME, NULL, SYSLINK_TASK_PRI);
+  // STATIC_MEM_TASK_CREATE(syslinkTask, syslinkTask, SYSLINK_TASK_NAME, NULL, SYSLINK_TASK_PRI);
 
   debugTimer = xTimerCreate( "syslinkTimer", M2T(1000), pdTRUE, NULL, debugHandler );
   xTimerStart(debugTimer, M2T(1000));

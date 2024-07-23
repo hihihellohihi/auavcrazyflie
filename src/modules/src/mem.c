@@ -51,7 +51,7 @@ static bool registrationEnabled = true;
 
 static uint8_t nrOfOwMems = 0;
 
-#define MAX_NR_HANDLERS 20
+#define MAX_NR_HANDLERS 2
 static const MemoryHandlerDef_t* handlers[MAX_NR_HANDLERS];
 static uint8_t nrOfHandlers = 0;
 static const MemoryOwHandlerDef_t* owMemHandler = 0;

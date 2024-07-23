@@ -41,9 +41,9 @@ void vApplicationMallocFailedHook( void )
 {
   portDISABLE_INTERRUPTS();
   DEBUG_PRINT("\nMalloc failed!\n");
-  ledSet(ERR_LED1, 1);
-  ledSet(ERR_LED2, 1);
-  motorsStop();
+  // ledSet(ERR_LED1, 1);
+  // ledSet(ERR_LED2, 1);
+  // motorsStop();
   storeAssertTextData("Malloc failed");
   while(1);
 }
@@ -53,9 +53,9 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char * pcTaskName)
 {
   portDISABLE_INTERRUPTS();
   DEBUG_PRINT("\nStack overflow!\n");
-  ledSet(ERR_LED1, 1);
-  ledSet(ERR_LED2, 1);
-  motorsStop();
+  // ledSet(ERR_LED1, 1);
+  // ledSet(ERR_LED2, 1);
+  // motorsStop();
   storeAssertTextData("Stack overflow");
   while(1);
 }

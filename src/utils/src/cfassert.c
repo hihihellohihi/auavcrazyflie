@@ -83,8 +83,8 @@ void assertFail(char *exp, char *file, int line)
   storeAssertFileData(file, line);
   DEBUG_PRINT("Assert failed %s:%d\n", file, line);
 
-  motorsStop();
-  ledShowFaultPattern();
+  // motorsStop();
+  // ledShowFaultPattern();
 
   if(!(CoreDebug->DHCSR & CoreDebug_DHCSR_C_DEBUGEN_Msk))
   {

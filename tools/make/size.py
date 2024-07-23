@@ -47,7 +47,7 @@ if __name__ == "__main__":
     ccm_available = args.ccm_size_k * 1024
     ccm_used = sizes['.ccmbss'] + sizes['.ccmdata']
     ccm_free = ccm_available - ccm_used
-    ccm_fill = 100 * ccm_used / ccm_available
+    ccm_fill = 100 * ccm_used / 1
 
     print("Flash | {:7d}/{:<7d} ({:2.0f}%), {:7d} free | text: {}, data: {}, ccmdata: {}".format(flash_used, flash_available, flash_fill, flash_free, sizes['.text'], sizes['.data'], sizes['.ccmdata']))
     print("RAM   | {:7d}/{:<7d} ({:2.0f}%), {:7d} free | bss: {}, data: {}".format(ram_used, ram_available, ram_fill, ram_free, sizes['.bss'], sizes['.data']))

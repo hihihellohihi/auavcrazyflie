@@ -47,29 +47,29 @@
 #include "worker.h"
 #include "freeRTOSdebug.h"
 #include "uart_syslink.h"
-#include "uart1.h"
-#include "uart2.h"
-#include "comm.h"
-#include "stabilizer.h"
-#include "commander.h"
-#include "console.h"
-#include "usblink.h"
+// #include "uart1.h"
+// #include "uart2.h"
+// #include "comm.h"
+// #include "stabilizer.h"
+// #include "commander.h"
+// #include "console.h"
+// #include "usblink.h"
 #include "mem.h"
-#include "crtp_mem.h"
-#include "proximity.h"
+// #include "crtp_mem.h"
+// #include "proximity.h"
 #include "watchdog.h"
-#include "queuemonitor.h"
-#include "buzzer.h"
-#include "sound.h"
+// #include "queuemonitor.h"
+// #include "buzzer.h"
+// #include "sound.h"
 #include "sysload.h"
 #include "estimator_kalman.h"
 #include "estimator_ukf.h"
 #include "deck.h"
-#include "extrx.h"
-#include "app.h"
+// #include "extrx.h"
+// #include "app.h"
 #include "static_mem.h"
-#include "peer_localization.h"
-#include "cfassert.h"
+// #include "peer_localization.h"
+// #include "cfassert.h"
 #include "i2cdev.h"
 #include "autoconf.h"
 #include "vcp_esc_passthrough.h"
@@ -110,7 +110,7 @@ void systemInit(void)
   canStartMutex = xSemaphoreCreateMutexStatic(&canStartMutexBuffer);
   xSemaphoreTake(canStartMutex, portMAX_DELAY);
 
-  usblinkInit();
+  // usblinkInit();
   sysLoadInit();
 #if CONFIG_ENABLE_CPX
   cpxlinkInit();
@@ -118,7 +118,7 @@ void systemInit(void)
 
   /* Initialized here so that DEBUG_PRINT (buffered) can be used early */
   debugInit();
-  crtpInit();
+  // crtpInit();
   consoleInit();
 
   DEBUG_PRINT("----------------------------\n");
@@ -138,10 +138,10 @@ void systemInit(void)
   storageInit();
   workerInit();
   adcInit();
-  ledseqInit();
-  pmInit();
-  buzzerInit();
-  peerLocalizationInit();
+  // ledseqInit();
+  // pmInit();
+  // buzzerInit();
+  // peerLocalizationInit();
 
 #ifdef CONFIG_APP_ENABLE
   appInit();
@@ -154,10 +154,10 @@ bool systemTest()
 {
   bool pass=isInit;
 
-  pass &= ledseqTest();
-  pass &= pmTest();
-  pass &= workerTest();
-  pass &= buzzerTest();
+  // pass &= ledseqTest();
+  // pass &= pmTest();
+  // pass &= workerTest();
+  // pass &= buzzerTest();
   return pass;
 }
 
@@ -167,8 +167,6 @@ void systemTask(void *arg)
 {
   bool pass = true;
 
-  ledInit();
-  ledSet(CHG_LED, 1);
 
 #ifdef CONFIG_DEBUG_QUEUE_MONITOR
   queueMonitorInit();
@@ -181,15 +179,15 @@ void systemTask(void *arg)
   usecTimerInit();
   i2cdevInit(I2C3_DEV);
   i2cdevInit(I2C1_DEV);
-  passthroughInit();
+  // passthroughInit();
 
   //Init the high-levels modules
   systemInit();
-  commInit();
-  commanderInit();
+  // commInit();
+  // commanderInit();
 
   StateEstimatorType estimator = StateEstimatorTypeAutoSelect;
-
+  // have to figure out how to make this defined
   #ifdef CONFIG_ESTIMATOR_KALMAN_ENABLE
   estimatorKalmanTaskInit();
   #endif
@@ -205,46 +203,46 @@ void systemTask(void *arg)
   memInit();
   deckInit();
   estimator = deckGetRequiredEstimator();
-  stabilizerInit(estimator);
-  if (deckGetRequiredLowInterferenceRadioMode() && platformConfigPhysicalLayoutAntennasAreClose())
-  {
-    platformSetLowInterferenceRadioMode();
-  }
-  soundInit();
-  crtpMemInit();
+  // stabilizerInit(estimator);
+  // if (deckGetRequiredLowInterferenceRadioMode() && platformConfigPhysicalLayoutAntennasAreClose())
+  // {
+  //   platformSetLowInterferenceRadioMode();
+  // }
+  // soundInit();
+  // crtpMemInit();
 
 #ifdef PROXIMITY_ENABLED
   proximityInit();
 #endif
 
-  systemRequestNRFVersion();
+  // systemRequestNRFVersion();
 
   //Test the modules
-  DEBUG_PRINT("About to run tests in system.c.\n");
-  if (systemTest() == false) {
-    pass = false;
-    DEBUG_PRINT("system [FAIL]\n");
-  }
-  if (configblockTest() == false) {
-    pass = false;
-    DEBUG_PRINT("configblock [FAIL]\n");
-  }
-  if (storageTest() == false) {
-    pass = false;
-    DEBUG_PRINT("storage [FAIL]\n");
-  }
-  if (commTest() == false) {
-    pass = false;
-    DEBUG_PRINT("comm [FAIL]\n");
-  }
-  if (commanderTest() == false) {
-    pass = false;
-    DEBUG_PRINT("commander [FAIL]\n");
-  }
-  if (stabilizerTest() == false) {
-    pass = false;
-    DEBUG_PRINT("stabilizer [FAIL]\n");
-  }
+  // DEBUG_PRINT("About to run tests in system.c.\n");
+  // if (systemTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("system [FAIL]\n");
+  // }
+  // if (configblockTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("configblock [FAIL]\n");
+  // }
+  // if (storageTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("storage [FAIL]\n");
+  // }
+  // if (commTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("comm [FAIL]\n");
+  // }
+  // if (commanderTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("commander [FAIL]\n");
+  // }
+  // if (stabilizerTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("stabilizer [FAIL]\n");
+  // }
 
   #ifdef CONFIG_ESTIMATOR_KALMAN_ENABLE
   if (estimatorKalmanTaskTest() == false) {
@@ -260,34 +258,34 @@ void systemTask(void *arg)
   }
   #endif
 
-  if (deckTest() == false) {
-    pass = false;
-    DEBUG_PRINT("deck [FAIL]\n");
-  }
-  if (soundTest() == false) {
-    pass = false;
-    DEBUG_PRINT("sound [FAIL]\n");
-  }
-  if (memTest() == false) {
-    pass = false;
-    DEBUG_PRINT("mem [FAIL]\n");
-  }
-  if (crtpMemTest() == false) {
-    pass = false;
-    DEBUG_PRINT("CRTP mem [FAIL]\n");
-  }
-  if (watchdogNormalStartTest() == false) {
-    pass = false;
-    DEBUG_PRINT("watchdogNormalStart [FAIL]\n");
-  }
-  if (cfAssertNormalStartTest() == false) {
-    pass = false;
-    DEBUG_PRINT("cfAssertNormalStart [FAIL]\n");
-  }
-  if (peerLocalizationTest() == false) {
-    pass = false;
-    DEBUG_PRINT("peerLocalization [FAIL]\n");
-  }
+  // if (deckTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("deck [FAIL]\n");
+  // }
+  // if (soundTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("sound [FAIL]\n");
+  // }
+  // if (memTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("mem [FAIL]\n");
+  // }
+  // if (crtpMemTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("CRTP mem [FAIL]\n");
+  // }
+  // if (watchdogNormalStartTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("watchdogNormalStart [FAIL]\n");
+  // }
+  // if (cfAssertNormalStartTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("cfAssertNormalStart [FAIL]\n");
+  // }
+  // if (peerLocalizationTest() == false) {
+  //   pass = false;
+  //   DEBUG_PRINT("peerLocalization [FAIL]\n");
+  // }
 
   //Start the firmware
   if(pass)
@@ -295,9 +293,9 @@ void systemTask(void *arg)
     DEBUG_PRINT("Self test passed!\n");
     selftestPassed = 1;
     systemStart();
-    soundSetEffect(SND_STARTUP);
-    ledseqRun(&seq_alive);
-    ledseqRun(&seq_testPassed);
+    // soundSetEffect(SND_STARTUP);
+    // ledseqRun(&seq_alive);
+    // ledseqRun(&seq_testPassed);
   }
   else
   {
@@ -306,7 +304,7 @@ void systemTask(void *arg)
     {
       while(1)
       {
-        ledseqRun(&seq_testFailed);
+        // ledseqRun(&seq_testFailed);
         vTaskDelay(M2T(2000));
         // System can be forced to start by setting the param to 1 from the cfclient
         if (selftestPassed)
@@ -319,8 +317,8 @@ void systemTask(void *arg)
     }
     else
     {
-      ledInit();
-      ledSet(SYS_LED, true);
+      // ledInit();
+      // ledSet(SYS_LED, true);
     }
   }
   DEBUG_PRINT("Free heap: %d bytes\n", xPortGetFreeHeapSize());

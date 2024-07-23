@@ -170,7 +170,7 @@ struct asyncRequest
 static struct asyncRequest reqPop;
 
 static TaskHandle_t task;
-STATIC_MEM_TASK_ALLOC(task, PCA9685_TASK_STACKSIZE);
+// STATIC_MEM_TASK_ALLOC(task, PCA9685_TASK_STACKSIZE);
 
 static xQueueHandle queue;
 STATIC_MEM_QUEUE_ALLOC(queue, 1, sizeof(struct asyncRequest));
@@ -194,7 +194,7 @@ bool pca9685startAsyncTask()
     return false;
   }
 
-  task = STATIC_MEM_TASK_CREATE(task, asyncTask, PCA9685_TASK_NAME, NULL, PCA9685_TASK_PRI);
+  // task = STATIC_MEM_TASK_CREATE(task, asyncTask, PCA9685_TASK_NAME, NULL, PCA9685_TASK_PRI);
   return true;
 }
 

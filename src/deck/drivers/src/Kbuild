@@ -1,4 +1,4 @@
-obj-y += test/
+# obj-y += test/
 obj-$(CONFIG_DECK_ACTIVE_MARKER)        += activeMarkerDeck.o
 obj-$(CONFIG_DECK_AI)                   += aideck.o
 obj-$(CONFIG_DECK_BIGQUAD)              += bigquad.o
@@ -11,8 +11,8 @@ obj-$(CONFIG_DECK_LEDRING)              += ledring12.o
 obj-$(CONFIG_DECK_LIGHTHOUSE)           += lighthouse.o
 obj-$(CONFIG_DECK_LOCO)                 += locodeck.o
 obj-$(CONFIG_DECK_LOCO)                 += lpsTdoa2Tag.o
-obj-$(CONFIG_DECK_LOCO)                 += lpsTdoa3Tag.o
-obj-$(CONFIG_DECK_LOCO)                 += lpsTwrTag.o
+# obj-$(CONFIG_DECK_LOCO)                 += lpsTdoa3Tag.o
+# obj-$(CONFIG_DECK_LOCO)                 += lpsTwrTag.o
 obj-$(CONFIG_DECK_MULTIRANGER)          += multiranger.o
 obj-$(CONFIG_DECK_OA)                   += oa.o
 obj-$(CONFIG_DECK_SERVO)                += servo.o

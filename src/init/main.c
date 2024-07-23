@@ -42,18 +42,18 @@
 /* ST includes */
 #include "stm32fxxx.h"
 
-#include "bootloader.h"
-
 int main() 
 {
-  check_enter_bootloader();
 
   //Initialize the platform.
-  int err = platformInit();
-  if (err != 0) {
-    // The firmware is running on the wrong hardware. Halt
-    while(1);
-  }
+  // if there are errors its probably here lmao
+  // int err = platformInit();
+  // if (err != 0) {
+  //   // The firmware is running on the wrong hardware. Halt
+  //   while(1);
+  // }
+  // idk if it's important, stolen from successful platformInit();
+  platformInitHardware();
 
   //Launch the system task that will initialize and start everything
   systemLaunch();
@@ -62,9 +62,7 @@ int main()
   vTaskStartScheduler();
 
   //TODO: Move to platform launch failed
-  ledInit();
-  ledSet(0, 1);
-  ledSet(1, 1);
+
 
   //Should never reach this point!
   while(1);

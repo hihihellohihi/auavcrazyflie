@@ -381,13 +381,13 @@ static uint32_t twrTagOnEvent(dwDevice_t *dev, uwbEvent_t event)
             rangingState |= (1<<current_anchor);
           }
 
-          locSrvSendRangeFloat(current_anchor, NAN);
+          // locSrvSendRangeFloat(current_anchor, NAN);
           failedRanging[current_anchor]++;
         } else {
           rangingState |= (1<<current_anchor);
           state.failedRanging[current_anchor] = 0;
 
-          locSrvSendRangeFloat(current_anchor, state.distance[current_anchor]);
+          // locSrvSendRangeFloat(current_anchor, state.distance[current_anchor]);
           succededRanging[current_anchor]++;
         }
         locoDeckSetRangingState(rangingState);

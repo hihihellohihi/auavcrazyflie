@@ -58,17 +58,17 @@ static void addBufferFullMarker();
  */
 static bool consoleSendMessage(void)
 {
-  if (crtpSendPacket(&messageToPrint) == pdTRUE)
-  {
-    messageToPrint.size = 0;
-    messageSendingIsPending = false;
-  }
-  else
-  {
-    return false;
-  }
+  // if (crtpSendPacket(&messageToPrint) == pdTRUE)
+  // {
+  //   messageToPrint.size = 0;
+  //   messageSendingIsPending = false;
+  // }
+  // else
+  // {
+  //   return false;
+  // }
 
-  return true;
+  // return true;
 }
 
 void consoleInit()
@@ -91,44 +91,44 @@ bool consoleTest(void)
 
 int consolePutchar(int ch)
 {
-  bool isInInterrupt = (SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk) != 0;
+  // bool isInInterrupt = (SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk) != 0;
 
-  if (!isInit) {
-    return 0;
-  }
+  // if (!isInit) {
+  //   return 0;
+  // }
 
-  if (isInInterrupt) {
-    return consolePutcharFromISR(ch);
-  }
+  // if (isInInterrupt) {
+  //   return consolePutcharFromISR(ch);
+  // }
 
-  if (xSemaphoreTake(synch, portMAX_DELAY) == pdTRUE)
-  {
-    // Try to send if we already have a pending message
-    if (messageSendingIsPending)
-    {
-      consoleSendMessage();
-    }
+  // if (xSemaphoreTake(synch, portMAX_DELAY) == pdTRUE)
+  // {
+  //   // Try to send if we already have a pending message
+  //   if (messageSendingIsPending)
+  //   {
+  //     consoleSendMessage();
+  //   }
 
-    if (! messageSendingIsPending)
-    {
-      if (messageToPrint.size < CRTP_MAX_DATA_SIZE)
-      {
-        messageToPrint.data[messageToPrint.size] = (unsigned char)ch;
-        messageToPrint.size++;
-      }
+  //   if (! messageSendingIsPending)
+  //   {
+  //     if (messageToPrint.size < CRTP_MAX_DATA_SIZE)
+  //     {
+  //       messageToPrint.data[messageToPrint.size] = (unsigned char)ch;
+  //       messageToPrint.size++;
+  //     }
 
-      if (ch == '\n' || messageToPrint.size >= CRTP_MAX_DATA_SIZE)
-      {
-        if (crtpGetFreeTxQueuePackets() == 1)
-        {
-          addBufferFullMarker();
-        }
-        messageSendingIsPending = true;
-        consoleSendMessage();
-      }
-    }
-    xSemaphoreGive(synch);
-  }
+  //     if (ch == '\n' || messageToPrint.size >= CRTP_MAX_DATA_SIZE)
+  //     {
+  //       if (crtpGetFreeTxQueuePackets() == 1)
+  //       {
+  //         addBufferFullMarker();
+  //       }
+  //       messageSendingIsPending = true;
+  //       consoleSendMessage();
+  //     }
+  //   }
+  //   xSemaphoreGive(synch);
+  // }
 
   return (unsigned char)ch;
 }

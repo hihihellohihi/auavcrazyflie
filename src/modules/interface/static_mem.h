@@ -52,7 +52,8 @@
 #if defined(UNIT_TEST_MODE)
   #define NO_DMA_CCM_SAFE_ZERO_INIT
 #else
-  #define NO_DMA_CCM_SAFE_ZERO_INIT __attribute__((section(".ccmbss")))
+  // frick ccmram
+  #define NO_DMA_CCM_SAFE_ZERO_INIT
 #endif
 
 /**
@@ -70,7 +71,8 @@
 #if defined(UNIT_TEST_MODE)
   #define FORCE_CCM_ZERO_INIT
 #else
-  #define FORCE_CCM_ZERO_INIT __attribute__((section(".ccmbss")))
+  // frick ccm ram
+  #define FORCE_CCM_ZERO_INIT
 #endif
 
 

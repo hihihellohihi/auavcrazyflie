@@ -48,7 +48,8 @@ INCLUDES += -I$(FREERTOS)/include -I$(PORT)
 INCLUDES += -I$(srctree)/src/config
 INCLUDES += -I$(srctree)/src/platform/interface
 INCLUDES += -I$(srctree)/src/deck/interface -I$(srctree)/src/deck/drivers/interface
-INCLUDES += -I$(srctree)/src/drivers/interface -I$(srctree)/src/drivers/bosch/interface
+INCLUDES += -I$(srctree)/src/drivers/interface 
+# -I$(srctree)/src/drivers/bosch/interface
 INCLUDES += -I$(srctree)/src/drivers/esp32/interface
 INCLUDES += -I$(srctree)/src/hal/interface
 INCLUDES += -I$(srctree)/src/modules/interface -I$(srctree)/src/modules/interface/kalman_core -I$(srctree)/src/modules/interface/lighthouse  -I$(srctree)/src/modules/interface/outlierfilter
@@ -71,8 +72,8 @@ objs-y += app_api
 objs-y += $(OOT)
 
 MEM_SIZE_FLASH_K = 1008
-MEM_SIZE_RAM_K = 128
-MEM_SIZE_CCM_K = 64
+MEM_SIZE_RAM_K = 64
+MEM_SIZE_CCM_K = 0
 
 
 #
@@ -118,7 +119,7 @@ PROG ?= $(PLATFORM)
 ifeq ($(CONFIG_DEBUG),y)
 ARCH_CFLAGS	+= -O0 -Wconversion
 else
-ARCH_CFLAGS += -Os -Werror
+# ARCH_CFLAGS += -Os -Werror
 endif
 
 _all:

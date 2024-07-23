@@ -112,9 +112,9 @@ struct {
   uwbAlgorithm_t *algorithm;
   char *name;
 } algorithmsList[LPS_NUMBER_OF_ALGORITHMS + 1] = {
-  [lpsMode_TWR] = {.algorithm = &uwbTwrTagAlgorithm, .name="TWR"},
+  // [lpsMode_TWR] = {.algorithm = &uwbTwrTagAlgorithm, .name="TWR"},
   [lpsMode_TDoA2] = {.algorithm = &uwbTdoa2TagAlgorithm, .name="TDoA2"},
-  [lpsMode_TDoA3] = {.algorithm = &uwbTdoa3TagAlgorithm, .name="TDoA3"},
+  // [lpsMode_TDoA3] = {.algorithm = &uwbTdoa3TagAlgorithm, .name="TDoA3"},
 };
 
 #if defined(CONFIG_DECK_LOCO_ALGORITHM_TDOA2)

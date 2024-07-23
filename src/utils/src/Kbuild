@@ -17,7 +17,7 @@ obj-y += statsCnt.o
 
 ### Sub directories
 obj-y += kve/
-obj-y += lighthouse/
+# obj-y += lighthouse/
 obj-y += tdoa/
 
 

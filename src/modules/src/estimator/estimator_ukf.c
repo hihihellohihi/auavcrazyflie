@@ -236,7 +236,7 @@ static void transposeMatrix(float *mat, float *matTp);
 
 static void errorUkfTask(void *parameters);
 
-STATIC_MEM_TASK_ALLOC_STACK_NO_DMA_CCM_SAFE(errorUkfTask, ERROR_UKF_TASK_STACKSIZE);
+// STATIC_MEM_TASK_ALLOC_STACK_NO_DMA_CCM_SAFE(errorUkfTask, ERROR_UKF_TASK_STACKSIZE);
 
 // --------------------------------------------------
 // Called one time during system startup
@@ -251,7 +251,7 @@ void errorEstimatorUkfTaskInit()
 
   navigationInit();
 
-  STATIC_MEM_TASK_CREATE(errorUkfTask, errorUkfTask, ERROR_UKF_TASK_NAME, NULL, ERROR_UKF_TASK_PRI);
+  // STATIC_MEM_TASK_CREATE(errorUkfTask, errorUkfTask, ERROR_UKF_TASK_NAME, NULL, ERROR_UKF_TASK_PRI);
   isInit = true;
 }
 

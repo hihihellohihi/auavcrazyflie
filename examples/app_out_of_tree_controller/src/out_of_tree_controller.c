@@ -50,7 +50,7 @@ void appMain() {
 
 // The new controller goes here --------------------------------------------
 // Move the includes to the the top of the file if you want to
-#include "controller.h"
+// #include "controller.h"
 
 // Call the PID controller in this example to make it possible to fly. When you implement you own controller, there is
 // no need to include the pid controller.
