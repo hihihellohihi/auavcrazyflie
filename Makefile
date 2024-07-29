@@ -71,7 +71,7 @@ objs-y += vendor
 objs-y += app_api
 objs-y += $(OOT)
 
-MEM_SIZE_FLASH_K = 1008
+MEM_SIZE_FLASH_K = 256
 MEM_SIZE_RAM_K = 64
 MEM_SIZE_CCM_K = 0
 

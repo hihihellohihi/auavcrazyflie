@@ -50,7 +50,7 @@
 
 #define QUEUE_LENGTH 64
 static xQueueHandle uart1queue;
-STATIC_MEM_QUEUE_ALLOC(uart1queue, QUEUE_LENGTH, sizeof(uint8_t));
+// STATIC_MEM_QUEUE_ALLOC(uart1queue, QUEUE_LENGTH, sizeof(uint8_t));
 
 static bool isInit = false;
 static bool hasOverrun = false;
@@ -170,7 +170,7 @@ void uart1InitWithParity(const uint32_t baudrate, const uart1Parity_t parity)
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
 
-  uart1queue = STATIC_MEM_QUEUE_CREATE(uart1queue);
+  // uart1queue = STATIC_MEM_QUEUE_CREATE(uart1queue);
 
   USART_ITConfig(UART1_TYPE, USART_IT_RXNE, ENABLE);
 

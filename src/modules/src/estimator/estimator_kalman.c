@@ -223,7 +223,7 @@ static void kalmanTask(void* parameters) {
       resetEstimation = false;
     }
     // might have to get rid of the supervisor, change this if needed
-    bool quadIsFlying = supervisorIsFlying();
+    bool quadIsFlying = true;
 
   #ifdef KALMAN_DECOUPLE_XY
     kalmanCoreDecoupleXY(&coreData);
@@ -327,15 +327,15 @@ static void updateQueuedMeasurements(const uint32_t nowMs, const bool quadIsFlyi
       case MeasurementTypeAbsoluteHeight:
         kalmanCoreUpdateWithAbsoluteHeight(&coreData, &m.data.height);
         break;
-      case MeasurementTypeFlow:
-        kalmanCoreUpdateWithFlow(&coreData, &m.data.flow, &gyroLatest);
-        break;
+      // ase MeasurementTypeFlow:
+      //   kalmanCoreUpdateWithFlow(&coreData, &m.data.flow, &gyroLatest);
+      //   break;c
       case MeasurementTypeYawError:
         kalmanCoreUpdateWithYawError(&coreData, &m.data.yawError);
         break;
-      case MeasurementTypeSweepAngle:
-        kalmanCoreUpdateWithSweepAngles(&coreData, &m.data.sweepAngle, nowMs, &sweepOutlierFilterState);
-        break;
+      // case MeasurementTypeSweepAngle:
+      //   kalmanCoreUpdateWithSweepAngles(&coreData, &m.data.sweepAngle, nowMs, &sweepOutlierFilterState);
+      //   break;
       case MeasurementTypeGyroscope:
         axis3fSubSamplerAccumulate(&gyroSubSampler, &m.data.gyroscope.gyro);
         gyroLatest = m.data.gyroscope.gyro;

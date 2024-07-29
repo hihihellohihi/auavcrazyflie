@@ -1,16 +1,16 @@
 obj-y += cfassert.o
 obj-y += clockCorrectionEngine.o
-obj-y += configblockeeprom.o
-obj-y += cpuid.o
+# obj-y += configblockeeprom.o
+# obj-y += cpuid.o
 obj-y += crc32.o
 obj-y += debug.o
 obj-y += eprintf.o
-obj-y += buf2buf.o
+# obj-y += buf2buf.o
 
-obj-y += filter.o
+# obj-y += filter.o
 obj-y += FreeRTOS-openocd.o
 
-obj-y += num.o
+# obj-y += num.o
 obj-y += rateSupervisor.o
 obj-y += sleepus.o
 obj-y += statsCnt.o

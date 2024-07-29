@@ -1,5 +1,5 @@
 # obj-y += app_channel.o
-obj-$(CONFIG_APP_ENABLE) += app_handler.o
+# obj-$(CONFIG_APP_ENABLE) += app_handler.o
 # obj-y += bootloader.o
 obj-y += console.o
 # obj-y += esp_deck_flasher.o
@@ -25,8 +25,8 @@ obj-y += queuemonitor.o
 # obj-y += serial_4way.o
 # obj-y += stabilizer.o
 obj-y += static_mem.o
-obj-y += supervisor.o
-obj-y += supervisor_state_machine.o
+# obj-y += supervisor.o
+# obj-y += supervisor_state_machine.o
 obj-y += sysload.o
 obj-y += system.o
 obj-$(CONFIG_DECK_LOCO) += tdoaEngineInstance.o

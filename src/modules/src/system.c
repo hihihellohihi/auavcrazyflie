@@ -42,7 +42,7 @@
 
 #include "system.h"
 #include "platform.h"
-#include "storage.h"
+// #include "storage.h"
 #include "configblock.h"
 #include "worker.h"
 #include "freeRTOSdebug.h"
@@ -134,8 +134,8 @@ void systemInit(void)
               *((int*)(MCU_ID_ADDRESS+8)), *((int*)(MCU_ID_ADDRESS+4)),
               *((int*)(MCU_ID_ADDRESS+0)), *((short*)(MCU_FLASH_SIZE_ADDRESS)));
 
-  configblockInit();
-  storageInit();
+  // configblockInit();
+  // storageInit();
   workerInit();
   adcInit();
   // ledseqInit();

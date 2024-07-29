@@ -61,7 +61,7 @@ static StaticSemaphore_t waitUntilSendDoneBuffer;
 static xSemaphoreHandle uartBusy;
 static StaticSemaphore_t uartBusyBuffer;
 static xQueueHandle syslinkPacketDelivery;
-STATIC_MEM_QUEUE_ALLOC(syslinkPacketDelivery, 8, sizeof(SyslinkPacket));
+// STATIC_MEM_QUEUE_ALLOC(syslinkPacketDelivery, 8, sizeof(SyslinkPacket));
 static bool syslinkPacketDeliveryReadyToReceive = false;
 
 #ifdef CONFIG_SYSLINK_RX_DMA
@@ -164,7 +164,7 @@ void uartslkInit(void)
   uartBusy = xSemaphoreCreateBinaryStatic(&uartBusyBuffer); // initialized as blocking
   xSemaphoreGive(uartBusy); // but we give it because the uart isn't busy at initialization
 
-  syslinkPacketDelivery = STATIC_MEM_QUEUE_CREATE(syslinkPacketDelivery);
+  // syslinkPacketDelivery = STATIC_MEM_QUEUE_CREATE(syslinkPacketDelivery);
   DEBUG_QUEUE_MONITOR_REGISTER(syslinkPacketDelivery);
 
   USART_InitTypeDef USART_InitStructure;

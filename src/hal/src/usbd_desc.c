@@ -173,7 +173,7 @@ __ALIGN_BEGIN uint8_t USBD_LangIDDesc[USB_SIZ_STRING_LANGID] __ALIGN_END =
 #pragma data_alignment=4
 #endif
 #endif                          /* USB_OTG_HS_INTERNAL_DMA_ENABLED */
-NO_DMA_CCM_SAFE_ZERO_INIT __ALIGN_BEGIN uint8_t USBD_StrDesc[USB_MAX_STR_DESC_SIZ] __ALIGN_END;
+// NO_DMA_CCM_SAFE_ZERO_INIT __ALIGN_BEGIN uint8_t USBD_StrDesc[USB_MAX_STR_DESC_SIZ] __ALIGN_END;
 
 /**
   * @}

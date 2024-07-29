@@ -173,7 +173,7 @@ static TaskHandle_t task;
 // STATIC_MEM_TASK_ALLOC(task, PCA9685_TASK_STACKSIZE);
 
 static xQueueHandle queue;
-STATIC_MEM_QUEUE_ALLOC(queue, 1, sizeof(struct asyncRequest));
+// STATIC_MEM_QUEUE_ALLOC(queue, 1, sizeof(struct asyncRequest));
 
 static void asyncTask(__attribute__((unused)) void *param)
 {
@@ -189,10 +189,10 @@ static void asyncTask(__attribute__((unused)) void *param)
 
 bool pca9685startAsyncTask()
 {
-  queue = STATIC_MEM_QUEUE_CREATE(queue);
-  if (queue == 0) {
-    return false;
-  }
+  // queue = STATIC_MEM_QUEUE_CREATE(queue);
+  // if (queue == 0) {
+  //   return false;
+  // }
 
   // task = STATIC_MEM_TASK_CREATE(task, asyncTask, PCA9685_TASK_NAME, NULL, PCA9685_TASK_PRI);
   return true;
